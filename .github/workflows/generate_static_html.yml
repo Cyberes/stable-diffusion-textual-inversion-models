@@ -1,0 +1,79 @@
+name: Generate Static HTML
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 0,12 * * *' # 00:00 and 12:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup
+      uses: BSFishy/pip-action@v1
+      with:
+        packages: |
+          requests
+          huggingface_hub
+          pillow
+          bs4
+
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ github.repository }}
+
+    - name: Generate Models Webpage
+      run: python ${{ github.workspace }}/generate_tx_models_html.py ${{ github.workspace }}/site/index.html
+      shell: sh
+
+    - name: Commit Changes
+      uses: devops-infra/action-commit-push@master
+      with:
+        github_token: "${{ secrets.GITHUB_TOKEN }}"
+        add_timestamp: false
+        commit_prefix: "[AUTO] "
+        commit_message: "Update static page"
+        force: false
+
+  deploy:
+    needs: generate
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Need this to force it to get the latest commit (always the one created by the generate job above).
+          # Otherwise it will always publish the previous job's output.
+          ref: 'main'
+
+# Alternative solution to the previous job issue?
+#       - name: Pull latest changes
+#         run: git pull --no-rebase
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: 'site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1

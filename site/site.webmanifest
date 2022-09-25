@@ -1,0 +1,19 @@
+{
+    "name": "Texual Inversion Models",
+    "short_name": "Texual Inversion Models",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ee9321",
+    "background_color": "#ee9321",
+    "display": "standalone"
+}
