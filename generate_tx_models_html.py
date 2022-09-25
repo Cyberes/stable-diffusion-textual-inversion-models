@@ -10,50 +10,31 @@ import requests
 from huggingface_hub import HfApi
 from PIL import ImageFile
 
-
-def getsizes(uri):
-    # https://stackoverflow.com/a/37709319
-    # get file size *and* image size (None if not known)
-    file = ulreq.urlopen(uri)
-    size = file.headers.get("content-length")
-    if size:
-        size = int(size)
-    p = ImageFile.Parser()
-    while True:
-        data = file.read(1024)
-        if not data:
-            break
-        p.feed(data)
-        if p.image:
-            return size, p.image.size
-            break
-    file.close()
-    return (size, None)
-
-
 parser = argparse.ArgumentParser()
 parser.add_argument('out_file', nargs='?', help='file to save to', default='stable-diffusion-textual-inversion-models.html')
 args = parser.parse_args()
 
 print('Will save to file:', args.out_file)
 
-# Get list of models under the sd-concepts-library organization
+# Init some stuff before saving the time
 api = HfApi()
 models_list = []
+
+# Save the time now before we do the hard work
+dt = datetime.datetime.now()
+tz = dt.astimezone().tzname()
+
+# Get list of models under the sd-concepts-library organization
 for model in api.list_models(author="sd-concepts-library"):
     models_list.append(model.modelId.replace('sd-concepts-library/', ''))
 models_list.sort()
 
-dt = datetime.datetime.now()
-tz = dt.astimezone().tzname()
-
 html_struct = f"""
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Stable Diffusion Texual Inversion Models</title>
   <meta charset="utf-8">
+  <title>Stable Diffusion Textual Inversion Models</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
@@ -108,52 +89,30 @@ html_struct = f"""
   </style>
   <div class="container" style="margin-bottom: 180px;">
     <div class="jumbotron text-center" style="margin-top: 45px;margin-right: 45px;margin-bottom: 0px;margin-left: 45px;">
-      <h1>Stable Diffusion Texual Inversion Models</h1>
+      <h1>Stable Diffusion Textual Inversion Models</h1>
     </div>
-    <center>
-      <p style="margin-bottom: 45px;font-size: 8pt;">
+    <div style="text-align: center;margin-bottom: 45px;font-size: 8pt;">
+      <p style="margin-bottom: 0px;">
         <i>Page updates automatically daily. Last updated <a class="btn-link" style="cursor: pointer;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="{dt.strftime(f"%m-%d-%Y %H:%M:%S {tz}")}">{datetime.datetime.now().strftime("%A %B %d, %Y")}</a>.</i>
       </p>
-    </center>
-
-    <p>
+     <p>
       Generated from <a href="https://huggingface.co/sd-concepts-library">huggingface.co/sd-concepts-library</a>
     </p>
+    </div>
 
     <p>
-      Models are downloaded straight from the HuggingFace repositories. There are currently {len(models_list)} textual inversion models in sd-concepts-library. The images displayed are the inputs, not the outputs.
+      Browser for the HuggingFace textual inversion library. There are currently {len(models_list)} textual inversion models in sd-concepts-library.
     </p>
-
+    
     <p>
-      Want to quickly test concepts? Try the <a href="https://huggingface.co/spaces/sd-concepts-library/stable-diffusion-conceptualizer">Stable Diffusion Conceptualizer</a> on HuggingFace.
-    </p>
-
+      Models are downloaded straight from the HuggingFace repositories. The images displayed are the inputs, not the outputs. Want to quickly test concepts? Try the <a href="https://huggingface.co/spaces/sd-concepts-library/stable-diffusion-conceptualizer">Stable Diffusion Conceptualizer</a> on HuggingFace.<a href="https://huggingface.co/docs/diffusers/main/en/training/text_inversion">More info on textual inversion.</a>
+    </p>	
+    	
     <p>
       <a href="https://github.com/Cyberes/stable-diffusion-textual-inversion-models/actions/workflows/generate_static_html.yml"><img src="https://github.com/Cyberes/stable-diffusion-textual-inversion-models/actions/workflows/generate_static_html.yml/badge.svg"></a>
     </p>
     <br>
     <hr>
-    <script>
-    const downloadAs = (url, name) => {{
-      axios.get(url, {{
-        headers: {{
-          "Content-Type": "application/octet-stream"
-        }},
-        responseType: "blob"
-      }})
-        .then(response => {{
-          const a = document.createElement("a");
-          const url = window.URL.createObjectURL(response.data);
-          a.href = url;
-          a.download = name;
-          a.click();
-        }})
-        .catch(err => {{
-          console.log("error", err);
-        }});
-      _paq.push(['trackLink', url, 'download']);
-    }};
-    </script>
     <noscript><p><img src="https://mato.evulid.cc/matomo.php?idsite=1&rec=1&url=https://cyberes.github.io/stable-diffusion-textual-inversion-models" style="border:0;" alt="" /></p></noscript>
 """
  
@@ -161,18 +120,18 @@ i = 1
 for model_name in models_list:
     # For testing
     # if i == 4:
-    #     break
+    # 	    break
 
     print(f'{i}/{len(models_list)} -> {model_name}')
 
-    # Images can be in a few different formats, figure out which one it's in
+    # Get the concept images from the huggingface repo
     restricted = False
     try:
         files = api.list_repo_files(
             repo_id=f'sd-concepts-library/{model_name}')
         concept_images = [i for i in files if i.startswith('concept_images/')]
-    # sometimes an author will require you to share your contact info to gain access.
     except requests.exceptions.HTTPError:
+        # Sometimes an author will require you to share your contact info to gain access
         restricted = True
 
     if restricted:
@@ -193,7 +152,8 @@ for model_name in models_list:
 <div class="row">
         """
 
-        # Some repos don't have 3 images
+        # Most repos have 3 concept images but some have more or less
+        # We gotta make sure only 3 are shown
         img_count = 3
         if len(concept_images) < 3:
             img_count = len(concept_images)
@@ -201,7 +161,8 @@ for model_name in models_list:
         for x in range(img_count):
             html_struct = html_struct + f"""
 <div class="col-sm">
-  <img class="thumbnail mx-auto lazy-load img-fluid" data-src="https://huggingface.co/sd-concepts-library/{model_name}/resolve/main/{concept_images[x]}">
+  <!-- <img class="thumbnail mx-auto lazy-load img-fluid" data-src="https://huggingface.co/sd-concepts-library/{model_name}/resolve/main/{concept_images[x]}">-->
+  <img class="thumbnail mx-auto img-fluid" loading="lazy" src="https://huggingface.co/sd-concepts-library/{model_name}/resolve/main/{concept_images[x]}">
 </div>
             """
         html_struct = html_struct + '</div>'
@@ -210,6 +171,9 @@ for model_name in models_list:
 html_struct = html_struct + """
   </div>
   <script>
+    // Lazy-loading images
+    // Not using since the browser implementation seems pretty ok
+    /*
     document.addEventListener("DOMContentLoaded", function() {
       let lazyloadImages;
       if ("IntersectionObserver" in window) {
@@ -255,12 +219,35 @@ html_struct = html_struct + """
         window.addEventListener("orientationChange", lazyload);
       }
     })
+    */
 
+    // Enable tooltips
     $(function() {
       $('[data-toggle="tooltip"]').tooltip({
         placement: "bottom"
       })
-    })
+    });
+
+    // Download the file under a different name
+    const downloadAs = (url, name) => {
+      axios.get(url, {
+          headers: {
+            "Content-Type": "application/octet-stream"
+          },
+          responseType: "blob"
+        })
+        .then(response => {
+          const a = document.createElement("a");
+          const url = window.URL.createObjectURL(response.data);
+          a.href = url;
+          a.download = name;
+          a.click();
+        })
+        .catch(err => {
+          console.log("error", err);
+        });
+      _paq.push(['trackLink', url, 'download']);
+    };
   </script>
 </body>
 """
