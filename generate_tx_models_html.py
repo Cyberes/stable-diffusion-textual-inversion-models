@@ -92,16 +92,13 @@ html_struct = f"""
       <h1>Stable Diffusion Textual Inversion Models</h1>
     </div>
     <div style="text-align: center;margin-bottom: 45px;font-size: 8pt;">
-      <p style="margin-bottom: 0px;">
+      <p>
         <i>Page updates automatically daily. Last updated <a class="btn-link" style="cursor: pointer;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="{dt.strftime(f"%m-%d-%Y %H:%M:%S {tz}")}">{datetime.datetime.now().strftime("%A %B %d, %Y")}</a>.</i>
       </p>
-     <p>
-      Generated from <a href="https://huggingface.co/sd-concepts-library">huggingface.co/sd-concepts-library</a>
-    </p>
     </div>
 
     <p>
-      Browser for the HuggingFace textual inversion library. There are currently {len(models_list)} textual inversion models in sd-concepts-library.
+      Browser for the <a href="https://huggingface.co/sd-concepts-library">HuggingFace textual inversion library</a>. There are currently {len(models_list)} textual inversion models in sd-concepts-library.
     </p>
     
     <p>
