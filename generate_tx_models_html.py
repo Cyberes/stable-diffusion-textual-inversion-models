@@ -181,13 +181,6 @@ for model_name in models_list:
 html_struct = html_struct + """
   </div>
   <script>
-    // Enable tooltips
-    $(function() {
-      $('[data-toggle="tooltip"]').tooltip({
-        placement: "bottom"
-      })
-    });
-
     // Download the file under a different name
     const downloadAs = (url, name) => {
       axios.get(url, {
@@ -209,6 +202,12 @@ html_struct = html_struct + """
       _paq.push(['trackLink', url, 'download']);
     };
     document.addEventListener("DOMContentLoaded", () => {
+        // Enable tooltips
+        $(function() {
+          $('[data-toggle="tooltip"]').tooltip({
+            placement: "bottom"
+          })
+        });
       var waypoints = $(".model-title").waypoint(function(direction) {
         _paq.push(["trackEvent", "Scroll", "View Section", this.element.getAttribute("data-content-name")]);
       })
@@ -216,6 +215,7 @@ html_struct = html_struct + """
   </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="/stable-diffusion-textual-inversion-models/assets/jquery.waypoints.min.js"></script>
 </body>
 """
 
