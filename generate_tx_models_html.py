@@ -134,7 +134,7 @@ for model_name in models_list:
 
     print(f'{i}/{len(models_list)} -> {model_name}')
 
-    html_struct = html_struct + f'<h3 class="model-title" data-track-content data-content-name="{model_name}" data-content-piece="Model Title">{model_name}</h3>'
+    html_struct = html_struct + f'<div data-track-content data-content-name="{model_name}" data-content-piece="TX Model Item"><h3 class="model-title">{model_name}</h3>'
 
     # Get the concept images from the huggingface repo
     restricted = False
@@ -175,7 +175,7 @@ for model_name in models_list:
   <img class="thumbnail mx-auto img-fluid" loading="lazy" src="https://huggingface.co/sd-concepts-library/{model_name}/resolve/main/{concept_images[x]}">
 </div>
             """
-        html_struct = html_struct + '</div>'
+        html_struct = html_struct + '</div></div>'
     i = i + 1
 
 html_struct = html_struct + """
