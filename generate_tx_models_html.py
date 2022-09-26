@@ -209,7 +209,7 @@ html_struct = html_struct + """
           })
         });
       var waypoints = $(".model-title").waypoint(function(direction) {
-        _paq.push(["trackEvent", "Scroll", "View Section", this.element.getAttribute("data-content-name")]);
+        _paq.push(["trackEvent", "Scroll", "View TX Model", this.element.getAttribute("data-content-name")]);
       })
    });
   </script>
