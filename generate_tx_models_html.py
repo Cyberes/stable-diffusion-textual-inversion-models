@@ -43,6 +43,7 @@ html_struct = f"""
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <script src="/stable-diffusion-textual-inversion-models/jquery.waypoints.min.js"></script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/stable-diffusion-textual-inversion-models/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/stable-diffusion-textual-inversion-models/favicon-32x32.png">
@@ -120,6 +121,8 @@ for model_name in models_list:
     # 	    break
 
     print(f'{i}/{len(models_list)} -> {model_name}')
+    
+    html_struct = html_struct + f'<h3 class="model-title" data-name="{model_name}">{model_name}</h3>'
 
     # Get the concept images from the huggingface repo
     restricted = False
@@ -133,7 +136,6 @@ for model_name in models_list:
 
     if restricted:
         html_struct = html_struct + f"""
-<h3 class="model-title">{model_name}</h3>
 <p>
   {model_name} is restricted and you must share your contact information to view this repository.
   <a type="button" class="btn btn-link" href="https://huggingface.co/sd-concepts-library/{model_name}/">View Repository</a>
@@ -141,7 +143,6 @@ for model_name in models_list:
         """
     else:
         html_struct = html_struct + f"""
-<h3 class="model-title">{model_name}</h3>
 <p>
   <button type="button" class="btn btn-primary" onclick="downloadAs('https://huggingface.co/sd-concepts-library/{model_name}/resolve/main/learned_embeds.bin', '{model_name}.pt')">Download {model_name}.pt</button>
   <a type="button" class="btn btn-link" href="https://huggingface.co/sd-concepts-library/{model_name}/">View Repository</a>
@@ -245,6 +246,12 @@ html_struct = html_struct + """
         });
       _paq.push(['trackLink', url, 'download']);
     };
+
+
+
+    var waypoints = $(".model-title").waypoint(function(direction) {
+      _paq.push(["trackEvent", "Scroll", "View", this.element.getAttribute("data-name")]);
+    })
   </script>
 </body>
 """
