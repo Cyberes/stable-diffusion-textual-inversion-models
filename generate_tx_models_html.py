@@ -38,7 +38,7 @@ html_struct = f"""
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
@@ -55,11 +55,13 @@ html_struct = f"""
   <meta name="theme-color" content="#ee9321">
 
   <!-- Matomo -->
+  <!-- Open-source, self hosted, private analytics. No third parties involved. -->
   <script>
     var _paq = window._paq = window._paq || [];
     _paq.push(['trackPageView']);
     _paq.push(['trackVisibleContentImpressions']);
     _paq.push(['enableLinkTracking']);
+    _paq.push(['enableHeartBeatTimer']);
     (function() {{
         var u = "https://mato.evulid.cc/";
         _paq.push(['setTrackerUrl', u + 'matomo.php']);
@@ -88,6 +90,18 @@ html_struct = f"""
         margin-top: 100px;
       }}
   </style>
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/stable-diffusion-models/">Models</a>
+          <a class="nav-link active" aria-current="page" href="/stable-diffusion-textual-inversion-models/">Textual Inversion Models</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
   <div class="container" style="margin-bottom: 180px;">
     <div class="jumbotron text-center" style="margin-top: 45px;margin-right: 45px;margin-bottom: 0px;margin-left: 45px;">
       <h1>Stable Diffusion Textual Inversion Models</h1>
