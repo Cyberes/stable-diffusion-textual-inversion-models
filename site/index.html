@@ -26,11 +26,13 @@
    <meta content="/stable-diffusion-textual-inversion-models/browserconfig.xml" name="msapplication-config"/>
    <meta content="#ee9321" name="theme-color"/>
    <!-- Matomo -->
+   <!-- Open-source, self hosted, private analytics. No third parties involved. -->
    <script>
     var _paq = window._paq = window._paq || [];
     _paq.push(['trackPageView']);
     _paq.push(['trackVisibleContentImpressions']);
     _paq.push(['enableLinkTracking']);
+    _paq.push(['enableHeartBeatTimer']);
     (function() {
         var u = "https://mato.evulid.cc/";
         _paq.push(['setTrackerUrl', u + 'matomo.php']);
@@ -59,6 +61,20 @@
         margin-top: 100px;
       }
   </style>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+     <div class="navbar-nav">
+      <a class="nav-link" href="/stable-diffusion-models/">
+       Models
+      </a>
+      <a aria-current="page" class="nav-link active" href="/stable-diffusion-textual-inversion-models/">
+       Textual Inversion Models
+      </a>
+     </div>
+    </div>
+   </div>
+  </nav>
   <div class="container" style="margin-bottom: 180px;">
    <div class="jumbotron text-center" style="margin-top: 45px;margin-right: 45px;margin-bottom: 0px;margin-left: 45px;">
     <h1>
@@ -69,7 +85,7 @@
     <p>
      <i>
       Page updates automatically daily. Last updated
-      <a class="btn-link" data-placement="bottom" data-toggle="tooltip" style="cursor: pointer;text-decoration: none;" title="09-26-2022 01:18:11 UTC">
+      <a class="btn-link" data-placement="bottom" data-toggle="tooltip" style="cursor: pointer;text-decoration: none;" title="09-26-2022 05:52:33 UTC">
        Monday September 26, 2022
       </a>
       .
@@ -81,7 +97,7 @@
     <a href="https://huggingface.co/sd-concepts-library">
      HuggingFace textual inversion library
     </a>
-    . There are currently 569 textual inversion models in sd-concepts-library.
+    . There are currently 568 textual inversion models in sd-concepts-library.
    </p>
    <p>
     Models are downloaded straight from the HuggingFace repositories. The images displayed are the inputs, not the outputs. Want to quickly test concepts? Try the
@@ -12155,31 +12171,6 @@
     <div class="col-sm">
      <!-- <img class="thumbnail mx-auto lazy-load img-fluid" data-src="https://huggingface.co/sd-concepts-library/tangles/resolve/main/concept_images/2.jpeg">-->
      <img class="thumbnail mx-auto img-fluid" loading="lazy" src="https://huggingface.co/sd-concepts-library/tangles/resolve/main/concept_images/2.jpeg"/>
-    </div>
-   </div>
-   <h3 class="model-title" data-content-name="tauren-01" data-content-piece="Model Title" data-track-content="">
-    tauren-01
-   </h3>
-   <p>
-    <button class="btn btn-primary" onclick="downloadAs('https://huggingface.co/sd-concepts-library/tauren-01/resolve/main/learned_embeds.bin', 'tauren-01.pt')" type="button">
-     Download tauren-01.pt
-    </button>
-    <a class="btn btn-link" href="https://huggingface.co/sd-concepts-library/tauren-01/" type="button">
-     View Repository
-    </a>
-   </p>
-   <div class="row">
-    <div class="col-sm">
-     <!-- <img class="thumbnail mx-auto lazy-load img-fluid" data-src="https://huggingface.co/sd-concepts-library/tauren-01/resolve/main/concept_images/0.jpeg">-->
-     <img class="thumbnail mx-auto img-fluid" loading="lazy" src="https://huggingface.co/sd-concepts-library/tauren-01/resolve/main/concept_images/0.jpeg"/>
-    </div>
-    <div class="col-sm">
-     <!-- <img class="thumbnail mx-auto lazy-load img-fluid" data-src="https://huggingface.co/sd-concepts-library/tauren-01/resolve/main/concept_images/1.jpeg">-->
-     <img class="thumbnail mx-auto img-fluid" loading="lazy" src="https://huggingface.co/sd-concepts-library/tauren-01/resolve/main/concept_images/1.jpeg"/>
-    </div>
-    <div class="col-sm">
-     <!-- <img class="thumbnail mx-auto lazy-load img-fluid" data-src="https://huggingface.co/sd-concepts-library/tauren-01/resolve/main/concept_images/2.jpeg">-->
-     <img class="thumbnail mx-auto img-fluid" loading="lazy" src="https://huggingface.co/sd-concepts-library/tauren-01/resolve/main/concept_images/2.jpeg"/>
     </div>
    </div>
    <h3 class="model-title" data-content-name="tb303" data-content-piece="Model Title" data-track-content="">
