@@ -39,9 +39,7 @@ html_struct = f"""
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/stable-diffusion-textual-inversion-models/apple-touch-icon.png">
@@ -90,7 +88,7 @@ html_struct = f"""
         margin-top: 100px;
       }}
   </style>
-  
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -101,7 +99,7 @@ html_struct = f"""
       </div>
     </div>
   </nav>
-  
+
   <div class="container" style="margin-bottom: 180px;">
     <div class="jumbotron text-center" style="margin-top: 45px;margin-right: 45px;margin-bottom: 0px;margin-left: 45px;">
       <h1>Stable Diffusion Textual Inversion Models</h1>
@@ -115,11 +113,11 @@ html_struct = f"""
     <p>
       Browser for the <a href="https://huggingface.co/sd-concepts-library">HuggingFace textual inversion library</a>. There are currently {len(models_list)} textual inversion models in sd-concepts-library.
     </p>
-    
+
     <p>
       Models are downloaded straight from the HuggingFace repositories. The images displayed are the inputs, not the outputs. Want to quickly test concepts? Try the <a href="https://huggingface.co/spaces/sd-concepts-library/stable-diffusion-conceptualizer">Stable Diffusion Conceptualizer</a> on HuggingFace.<a href="https://huggingface.co/docs/diffusers/main/en/training/text_inversion">More info on textual inversion.</a>
-    </p>	
-    	
+    </p>
+
     <center>
       <a href="https://github.com/Cyberes/stable-diffusion-textual-inversion-models/actions/workflows/generate_static_html.yml"><img src="https://github.com/Cyberes/stable-diffusion-textual-inversion-models/actions/workflows/generate_static_html.yml/badge.svg"></a>
     </center>
@@ -127,7 +125,7 @@ html_struct = f"""
     <hr>
     <noscript><p><img src="https://mato.evulid.cc/matomo.php?idsite=1&rec=1&url=https://cyberes.github.io/stable-diffusion-textual-inversion-models" style="border:0;" alt="" /></p></noscript>
 """
- 
+
 i = 1
 for model_name in models_list:
     # For testing
@@ -135,7 +133,7 @@ for model_name in models_list:
     # 	    break
 
     print(f'{i}/{len(models_list)} -> {model_name}')
-    
+
     html_struct = html_struct + f'<h3 class="model-title" data-track-content data-content-name="{model_name}" data-content-piece="Model Title">{model_name}</h3>'
 
     # Get the concept images from the huggingface repo
@@ -183,56 +181,6 @@ for model_name in models_list:
 html_struct = html_struct + """
   </div>
   <script>
-    // Lazy-loading images
-    // Not using since the browser implementation seems pretty ok
-    /*
-    document.addEventListener("DOMContentLoaded", function() {
-      let lazyloadImages;
-      if ("IntersectionObserver" in window) {
-        lazyloadImages = document.querySelectorAll(".lazy-load");
-        let imageObserver = new IntersectionObserver(function(entries, observer) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              let image = entry.target;
-              image.src = image.dataset.src;
-              image.classList.remove("lazy-load");
-              imageObserver.unobserve(image);
-            }
-          });
-        });
-        lazyloadImages.forEach(function(image) {
-          imageObserver.observe(image);
-        });
-      } else {
-        let lazyloadThrottleTimeout;
-        lazyloadImages = document.querySelectorAll(".lazy-load");
-
-        function lazyload() {
-          if (lazyloadThrottleTimeout) {
-            clearTimeout(lazyloadThrottleTimeout);
-          }
-          lazyloadThrottleTimeout = setTimeout(function() {
-            let scrollTop = window.pageYOffset;
-            lazyloadImages.forEach(function(img) {
-              if (img.offsetTop < (window.innerHeight + scrollTop)) {
-                img.src = img.dataset.src;
-                img.classList.remove('lazy-load');
-              }
-            });
-            if (lazyloadImages.length == 0) {
-              document.removeEventListener("scroll", lazyload);
-              window.removeEventListener("resize", lazyload);
-              window.removeEventListener("orientationChange", lazyload);
-            }
-          }, 20);
-        }
-        document.addEventListener("scroll", lazyload);
-        window.addEventListener("resize", lazyload);
-        window.addEventListener("orientationChange", lazyload);
-      }
-    })
-    */
-
     // Enable tooltips
     $(function() {
       $('[data-toggle="tooltip"]').tooltip({
@@ -260,7 +208,13 @@ html_struct = html_struct + """
         });
       _paq.push(['trackLink', url, 'download']);
     };
+
+      var waypoints = $(".model-title").waypoint(function(direction) {
+        _paq.push(["trackEvent", "Scroll", "View Section", this.element.getAttribute("data-content-name")]);
+      })
   </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 </body>
 """
 
