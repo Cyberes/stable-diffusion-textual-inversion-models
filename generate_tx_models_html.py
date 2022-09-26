@@ -43,7 +43,6 @@ html_struct = f"""
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <script src="/stable-diffusion-textual-inversion-models/jquery.waypoints.min.js"></script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/stable-diffusion-textual-inversion-models/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/stable-diffusion-textual-inversion-models/favicon-32x32.png">
@@ -59,6 +58,7 @@ html_struct = f"""
   <script>
     var _paq = window._paq = window._paq || [];
     _paq.push(['trackPageView']);
+    _paq.push(['trackVisibleContentImpressions']);
     _paq.push(['enableLinkTracking']);
     (function() {{
         var u = "https://mato.evulid.cc/";
@@ -122,7 +122,7 @@ for model_name in models_list:
 
     print(f'{i}/{len(models_list)} -> {model_name}')
     
-    html_struct = html_struct + f'<h3 class="model-title" data-name="{model_name}">{model_name}</h3>'
+    html_struct = html_struct + f'<h3 class="model-title" data-track-content data-content-name="{model_name}" data-content-piece="Model Title">{model_name}</h3>'
 
     # Get the concept images from the huggingface repo
     restricted = False
@@ -246,12 +246,6 @@ html_struct = html_struct + """
         });
       _paq.push(['trackLink', url, 'download']);
     };
-
-
-
-    var waypoints = $(".model-title").waypoint(function(direction) {
-      _paq.push(["trackEvent", "Scroll", "View", this.element.getAttribute("data-name")]);
-    })
   </script>
 </body>
 """
