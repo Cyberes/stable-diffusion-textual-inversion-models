@@ -111,7 +111,7 @@ html_struct = f"""
     </div>
 
     <p>
-      Browser for the <a href="https://huggingface.co/sd-concepts-library">HuggingFace textual inversion library</a>. There are currently {len(models_list)} textual inversion models in sd-concepts-library.
+      Browser for the <a href="https://huggingface.co/sd-concepts-library">HuggingFace textual inversion library</a>. There are currently {len(models_list)} textual inversion embeddings in sd-concepts-library.
     </p>
 
     <p>
