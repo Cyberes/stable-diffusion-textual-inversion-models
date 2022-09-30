@@ -34,7 +34,7 @@ html_struct = f"""
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Stable Diffusion Textual Inversion Models</title>
+  <title>Stable Diffusion Textual Inversion Embeddings</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
@@ -102,7 +102,7 @@ html_struct = f"""
 
   <div class="container" style="margin-bottom: 180px;">
     <div class="jumbotron text-center" style="margin-top: 45px;margin-right: 45px;margin-bottom: 0px;margin-left: 45px;">
-      <h1>Stable Diffusion Textual Inversion Models</h1>
+      <h1>Stable Diffusion Textual Inversion Embeddings</h1>
     </div>
     <div style="text-align: center;margin-bottom: 45px;font-size: 8pt;">
       <p>
@@ -115,7 +115,7 @@ html_struct = f"""
     </p>
 
     <p>
-      Models are downloaded straight from the HuggingFace repositories. The images displayed are the inputs, not the outputs. Want to quickly test concepts? Try the <a href="https://huggingface.co/spaces/sd-concepts-library/stable-diffusion-conceptualizer">Stable Diffusion Conceptualizer</a> on HuggingFace.<a href="https://huggingface.co/docs/diffusers/main/en/training/text_inversion">More info on textual inversion.</a>
+      Embeddings are downloaded straight from the HuggingFace repositories. The images displayed are the inputs, not the outputs. Want to quickly test concepts? Try the <a href="https://huggingface.co/spaces/sd-concepts-library/stable-diffusion-conceptualizer">Stable Diffusion Conceptualizer</a> on HuggingFace.<a href="https://huggingface.co/docs/diffusers/main/en/training/text_inversion">More info on textual inversion.</a>
     </p>
 
     <center>
