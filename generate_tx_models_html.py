@@ -94,7 +94,7 @@ html_struct = f"""
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link" href="/stable-diffusion-models/">Models</a>
-          <a class="nav-link active" aria-current="page" href="/stable-diffusion-textual-inversion-models/">Textual Inversion Models</a>
+          <a class="nav-link active" aria-current="page" href="/stable-diffusion-textual-inversion-models/">Textual Inversion Embeddings</a>
         </div>
       </div>
     </div>
