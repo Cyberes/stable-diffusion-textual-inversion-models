@@ -5,8 +5,8 @@ import shutil
 import sys
 from urllib import request as ulreq
 
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 from huggingface_hub import HfApi
 from PIL import ImageFile
 
@@ -40,7 +40,7 @@ html_struct = f"""
   <meta http-equiv="Expires" content="0" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-site-verification" content="pgoBH8R__ZWngQ-S3o8xopSpHYROu_0VfoS5VYXB3uw" />
-  
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
@@ -91,7 +91,7 @@ html_struct = f"""
       }}
   </style>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#6c757d14!important;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#6c757d42!important;">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
