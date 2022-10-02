@@ -1,3 +1,5 @@
+# pip install html5print requests huggingface-hub Pillow
+
 import argparse
 import datetime
 import os
@@ -6,7 +8,6 @@ import sys
 from urllib import request as ulreq
 
 import requests
-from bs4 import BeautifulSoup
 from huggingface_hub import HfApi
 from PIL import ImageFile
 
@@ -117,7 +118,7 @@ html_struct = f"""
     </p>
 
     <p>
-      Embeddings are downloaded straight from the HuggingFace repositories. The images displayed are the inputs, not the outputs. Want to quickly test concepts? Try the <a href="https://huggingface.co/spaces/sd-concepts-library/stable-diffusion-conceptualizer">Stable Diffusion Conceptualizer</a> on HuggingFace.<a href="https://huggingface.co/docs/diffusers/main/en/training/text_inversion">More info on textual inversion.</a>
+      Embeddings are downloaded straight from the HuggingFace repositories. The images displayed are the inputs, not the outputs. Want to quickly test concepts? Try the <a href="https://huggingface.co/spaces/sd-concepts-library/stable-diffusion-conceptualizer">Stable Diffusion Conceptualizer</a> on HuggingFace. <a href="https://huggingface.co/docs/diffusers/main/en/training/text_inversion">More info on textual inversion.</a>
     </p>
 
     <center>
@@ -132,7 +133,7 @@ i = 1
 for model_name in models_list:
     # For testing
     # if i == 4:
-    # 	    break
+    #     break
 
     print(f'{i}/{len(models_list)} -> {model_name}')
 
@@ -223,9 +224,6 @@ html_struct = html_struct + """
 </body>
 """
 
-# Load the HTML into bs4 so we can format it
-soup = BeautifulSoup(html_struct, "html.parser")
-
 f = open(args.out_file, 'w', encoding='utf-8')
-f.write(str(soup.prettify()))
+f.write(html_struct)
 f.close()
