@@ -118,7 +118,7 @@ html_struct = f"""
     </div>
 
     <p>
-      Browser for the <a href="https://huggingface.co/sd-concepts-library">HuggingFace textual inversion library</a>. There are currently {len(models_list)} textual inversion embeddings in sd-concepts-library.
+      Browser for the <a href="https://huggingface.co/sd-concepts-library">HuggingFace textual inversion library</a>. There are currently {len(models_list)} textual inversion embeddings in sd-concepts-library. These are meant to be used with <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">AUTOMATIC1111's SD WebUI</a>.
     </p>
 
     <p>
@@ -224,7 +224,7 @@ html_struct = html_struct + """
   </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <script src="/stable-diffusion-textual-inversion-models/jquery.waypoints.min.js"></script>
+    <!--<script src="/stable-diffusion-textual-inversion-models/jquery.waypoints.min.js"></script>-->
 </body>
 """
 
