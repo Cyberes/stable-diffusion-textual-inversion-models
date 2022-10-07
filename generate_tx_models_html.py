@@ -92,7 +92,7 @@ html_struct = f"""
       }}
 
     body {{
-        background-color: #0000ff08 !important;
+        background-color: #0000ff0d !important;
     }}
   </style>
 
@@ -113,7 +113,7 @@ html_struct = f"""
     </div>
     <div style="text-align: center;margin-bottom: 45px;font-size: 8pt;">
       <p>
-        <i>Page updates automatically daily. Last updated <a class="btn-link" style="cursor: pointer;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="{dt.strftime(f"%m-%d-%Y %H:%M:%S {tz}")}">{datetime.datetime.now().strftime("%A %B %d, %Y")}</a>.</i>
+        <i>Page updates automatically daily. Last updated <a class="btn-link" style="cursor: pointer;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="{dt.strftime(f"%m-%d-%Y %H:%M:%S {tz}")}">{dt.strftime("%A %B %d, %Y")}</a>.</i>
       </p>
     </div>
 
