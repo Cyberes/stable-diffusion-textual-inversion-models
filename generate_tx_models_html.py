@@ -94,6 +94,11 @@ html_struct = f"""
     body {{
         background-color: #0000ff0d !important;
     }}
+
+    .model-title > a {{
+        color: initial !important;
+        text-decoration: none !important;
+    }}
   </style>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#6c757d42!important;">
@@ -141,7 +146,7 @@ for model_name in models_list:
 
     print(f'{i}/{len(models_list)} -> {model_name}')
 
-    html_struct = html_struct + f'<div data-track-content data-content-name="{model_name}" data-content-piece="TX Model Item"><h3 class="model-title">{model_name}</h3>'
+    html_struct = html_struct + f'<div data-track-content data-content-name="{model_name}" data-content-piece="TX Model Item"><h3 class="model-title"><a href="#{model_name}">{model_name}</a></h3>'
 
     # Get the concept images from the huggingface repo
     restricted = False
