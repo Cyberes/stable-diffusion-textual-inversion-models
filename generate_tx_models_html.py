@@ -107,6 +107,7 @@ html_struct = f"""
         <div class="navbar-nav">
           <a class="nav-link" href="/stable-diffusion-models/">Models</a>
           <a class="nav-link active" aria-current="page" href="/stable-diffusion-textual-inversion-models/">Textual Inversion Embeddings</a>
+        <a class="nav-link" href="/stable-diffusion-dreambooth-library/">DreamBooth Models</a>
         </div>
       </div>
     </div>
