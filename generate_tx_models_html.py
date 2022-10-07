@@ -90,6 +90,10 @@ html_struct = f"""
     .model-title {{
         margin-top: 100px;
       }}
+
+    body {{
+        background-color: #0000ff08 !important;
+    }}
   </style>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#6c757d42!important;">
