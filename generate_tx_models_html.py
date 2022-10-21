@@ -101,14 +101,15 @@ html_struct = f"""
     }}
   </style>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#6c757d42!important;">
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#6c757d42!important">
+    <div class="container-fluid"><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navtogglecontent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navtogglecontent">
         <div class="navbar-nav">
           <a class="nav-link" href="/stable-diffusion-models/">Models</a>
-          <a class="nav-link active" aria-current="page" href="/stable-diffusion-textual-inversion-models/">Textual Inversion Embeddings</a>
-        <a class="nav-link" href="/stable-diffusion-dreambooth-library/">DreamBooth Models</a>
-	<a class="nav-link" href="/stable-diffusion-models/sdmodels/">sdmodels</a>
+          <a class="nav-link active" aria-current="page"  href="/stable-diffusion-textual-inversion-models/">Textual Inversion Models</a>
+          <a class="nav-link" href="/stable-diffusion-dreambooth-library/">DreamBooth Models</a>
+          <a class="nav-link" href="/stable-diffusion-models/sdmodels/">sdmodels</a>
         </div>
       </div>
     </div>
