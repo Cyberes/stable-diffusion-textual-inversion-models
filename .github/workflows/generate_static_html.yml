@@ -65,10 +65,6 @@ jobs:
           # Otherwise it will always publish the previous job's output.
           ref: 'main'
 
-# Alternative solution to the previous job issue?
-#       - name: Pull latest changes
-#         run: git pull --no-rebase
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
