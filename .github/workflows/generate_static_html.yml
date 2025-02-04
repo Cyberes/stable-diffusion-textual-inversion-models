@@ -1,13 +1,13 @@
 name: Generate Static HTML
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  schedule:
-    - cron: '0 0,12 * * *' # 00:00 and 12:00 UTC
-  workflow_dispatch:
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+  # schedule:
+  #   - cron: '0 0,12 * * *' # 00:00 and 12:00 UTC
+  # workflow_dispatch:
 
 permissions:
   contents: write
